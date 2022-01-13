@@ -12,7 +12,7 @@ Siwei Mao
 # Import the data
 
 ``` r
-law_df <- read.xlsx("/Users/lily1290/Desktop/Python/project - data.xlsx", detectDates = TRUE)
+law_df <- read.xlsx("~/Desktop/Python/NCSL-project/project_data_updated.xlsx", detectDates = TRUE)
 ```
 
 # Laws Passed Per Year in Each State
@@ -58,40 +58,33 @@ law_df %>%
 ``` r
 law_df %>%
   #select the columns with the topic names
-  select(7:19) %>%
+  select(9:21) %>%
   #calculate the sum of each column, which corresponds to the total number of times each topic appears
   colSums() 
 ```
 
     ##                    Budget.and.Oversight    Community.Supervision.Administration 
-    ##                                     510                                     461 
+    ##                                     515                                     471 
     ##          Community.Supervision.Programs    Correctional.Facility.Administration 
-    ##                                     294                                     788 
+    ##                                     293                                     788 
     ##   Diversion.and.Sentencing.Alternatives                         Inmate.Programs 
-    ##                                     212                                     180 
+    ##                                     211                                     179 
     ## Reentry.Barriers.and.Access.to.Services      Reentry.Oversight.and.Organization 
-    ##                                     234                                     108 
+    ##                                     234                                     109 
     ##        Reentry.Programs.and.Supervision                   Release.and.Discharge 
-    ##                                     153                                     311 
+    ##                                     155                                     311 
     ##       Sentencing.and.Criminal.Penalties                 Specialized.Populations 
-    ##                                     362                                     269 
+    ##                                     363                                     270 
     ##                Treatment-Based.Programs 
     ##                                     330
 
 ``` r
 #create a data frame to prepare for plotting
 Topic <- c("Budget and Oversight", "Community Supervision Administration", "Community Supervision Programs", "Correctional Facility Administration", "Diversion and Sentencing Alternatives", "Inmate Programs", "Reentry Barriers and Access to Services", "Reentry OVersight and Organization", "Reentry Programs and Supervision", "Release and Discharge", "Sentencing and Criminal Penalties", "Specialized Populations", "Treatment-Based Programs")
-Count <- c(510, 461, 294, 788, 212, 180, 234, 108, 153, 311, 362, 269, 330)
+Count <- c(515, 471, 293, 788, 211, 179, 234, 109, 155, 311, 363, 270, 330)
 
-topic_count <- data_frame(Topic, Count)
-```
+topic_count <- tibble(Topic, Count)
 
-    ## Warning: `data_frame()` was deprecated in tibble 1.1.0.
-    ## Please use `tibble()` instead.
-    ## This warning is displayed once every 8 hours.
-    ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
-
-``` r
 #use ggplot to visualize the data
 topic_count %>%
   ggplot(mapping = aes(Topic, Count)) +
