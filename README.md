@@ -12,6 +12,7 @@ library(tidyr)
 library(openxlsx)
 library(dplyr)
 library(forcats)
+library(knitr)
 
 # Files in the repository
 [Tidy Data frame](NCSL-project/project_data_updated.xlsx)
